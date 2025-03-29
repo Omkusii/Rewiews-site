@@ -1,0 +1,60 @@
+<!DOCTYPE html><html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оставить отзыв</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            max-width: 500px;
+            margin: auto;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-top: 10px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>Оставьте ваш отзыв</h2>
+    <form id="reviewForm">
+        <label for="name">Ваше имя:</label>
+        <input type="text" id="name" name="name" required><br><label for="review">Ваш отзыв:</label>
+    <textarea id="review" name="review" required></textarea><br>
+    
+    <button type="submit">Отправить</button>
+</form>
+
+<h3>Отзывы:</h3>
+<ul id="reviewsList"></ul>
+
+<script>
+    document.getElementById('reviewForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        let name = document.getElementById('name').value;
+        let review = document.getElementById('review').value;
+        
+        if (name && review) {
+            let reviewItem = document.createElement('li');
+            reviewItem.textContent = `${name}: ${review}`;
+            document.getElementById('reviewsList').appendChild(reviewItem);
+            
+            document.getElementById('reviewForm').reset();
+        }
+    });
+</script>
+
+</body>
+</html>
